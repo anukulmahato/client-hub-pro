@@ -64,7 +64,11 @@ type StatusFilter = "all" | "active" | "inactive";
 
 function Dashboard() {
   const { theme, toggle } = useTheme();
-  const [clients, setClients] = useState<Client[]>(() => loadClients());
+  const [clients, setClients] = useState<Client[]>([]);
+
+  useEffect(() => {
+    setClients(loadClients());
+  }, []);
   const [query, setQuery] = useState("");
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
   const [sortKey, setSortKey] = useState<SortKey>("createdAt");
