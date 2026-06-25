@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "client-hub-pro",
-  "main": "./dist/server/server.js",
+//   "main": "./dist/server/server.js",
   
   // Set this to today's date
   "compatibility_date": "2026-06-24",
