@@ -212,7 +212,7 @@ function Dashboard() {
             Overview
           </h1>
           <p className="text-sm text-muted-foreground">
-            Track and manage every client relationship in one place.
+            Track and manage every client relationship in one placement.
           </p>
         </div>
 
