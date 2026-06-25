@@ -1,9 +1,18 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "client-hub-pro",
+  "main": "./dist/server/server.js",
+  
   // Set this to today's date
   "compatibility_date": "2026-06-24",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "assets": {
-    "not_found_handling": "single-page-application",
+    "directory": "./dist/client",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
   }
 }
