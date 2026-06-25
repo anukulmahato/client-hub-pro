@@ -1,24 +1,6 @@
-import { useEffect, useMemo, useState } from "react";
-import { createFileRoute } from "@tanstack/react-router";
-import { toast } from "sonner";
-import {
-  Search,
-  Plus,
-  Download,
-  Moon,
-  Sun,
-  LayoutDashboard,
-  Filter,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { ClientFormDialog } from "@/components/dashboard/client-form-dialog";
+import { ClientTable, type SortDir, type SortKey } from "@/components/dashboard/client-table";
+import { StatsCards } from "@/components/dashboard/stats-cards";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -29,17 +11,27 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { StatsCards } from "@/components/dashboard/stats-cards";
-import { ClientFormDialog } from "@/components/dashboard/client-form-dialog";
-import { ClientTable, type SortKey, type SortDir } from "@/components/dashboard/client-table";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { useTheme } from "@/hooks/use-theme";
 import {
+  exportClientsToCsv,
   loadClients,
   saveClients,
-  exportClientsToCsv,
   type Client,
   type ClientInput,
 } from "@/lib/clients";
+import { createFileRoute } from "@tanstack/react-router";
+import { Download, Filter, LayoutDashboard, Moon, Plus, Search, Sun } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -186,12 +178,7 @@ function Dashboard() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Button
-              variant="outline"
-              size="icon"
-              onClick={toggle}
-              aria-label="Toggle dark mode"
-            >
+            <Button variant="outline" size="icon" onClick={toggle} aria-label="Toggle dark mode">
               {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
             </Button>
             <Button variant="outline" className="hidden sm:inline-flex" onClick={handleExport}>
@@ -241,7 +228,13 @@ function Dashboard() {
                 <SelectItem value="inactive">Inactive</SelectItem>
               </SelectContent>
             </Select>
-            <Button variant="outline" className="sm:hidden" size="icon" onClick={handleExport} aria-label="Export CSV">
+            <Button
+              variant="outline"
+              className="sm:hidden"
+              size="icon"
+              onClick={handleExport}
+              aria-label="Export CSV"
+            >
               <Download className="h-4 w-4" />
             </Button>
           </div>
